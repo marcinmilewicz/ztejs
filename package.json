@@ -2,6 +2,7 @@
   "name": "ztejs",
   "version": "0.0.0",
   "license": "MIT",
+  "author": "Marcin Milewicz",
   "scripts": {},
   "private": true,
   "dependencies": {

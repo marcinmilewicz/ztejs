@@ -1,11 +1,27 @@
-# ztejs-mc801
+# Light JS API for Router Huawei MC801
 
-This library was generated with [Nx](https://nx.dev).
+It provides to execute commands on MC801 through HTTP transport
 
-## Building
+```
+const executor: ZTEMC801RouterExecutor = createActionExecutor(HOST);
+const api = await ZteApi.initiateApi(executor, PASSWORD);
 
-Run `nx build ztejs-mc801` to build the library.
+// Disconnect network
+api.disconnectNetwork();
 
-## Running unit tests
+// Connect network
+api.connectNetwork()
 
-Run `nx test ztejs-mc801` to execute the unit tests via [Jest](https://jestjs.io).
+// For automatically WCDM Only Mode
+api.changeLTE();
+
+// For automatically LTE Only Mode
+api.changeLTE();
+
+// For automatically WCDM Only Mode
+api.changeLTE();
+
+```
+
+
+For the time being it's only PoC for private purpose, but if you have some question or want to participate in, please do not hesitate.
