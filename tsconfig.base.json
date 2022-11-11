@@ -14,7 +14,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@ztejs": ["packages/ztejs/src/index.ts"],
+      "@ztejs/core": ["packages/ztejs-core/src/index.ts"],
+      "@ztejs/mc801": ["packages/ztejs-mc801/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
