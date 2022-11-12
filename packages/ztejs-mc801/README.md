@@ -19,7 +19,7 @@ api.setOnlyLTENetwork();
 api.setOnlyWCDMANetwork();
 
 // For automatically 5G Standalone Mode
-api.sset5GStandaloneNetwork();
+api.set5GStandaloneNetwork();
 
 ```
 
