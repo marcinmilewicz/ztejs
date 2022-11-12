@@ -13,12 +13,14 @@ api.disconnectNetwork();
 api.connectNetwork()
 
 // For automatically LTE Only Mode
-api.changeLTE();
+api.setOnlyLTENetwork();
 
 // For automatically WCDM Only Mode
-api.changeWCDMA();
+api.setOnlyWCDMANetwork();
+
+// For automatically 5G Standalone Mode
+api.sset5GStandaloneNetwork();
 
 ```
-
 
 For the time being it's only PoC for private purpose, but if you have some question or want to participate in, please do not hesitate.

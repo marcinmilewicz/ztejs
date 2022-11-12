@@ -1,5 +1,14 @@
-import { changeToLTE, changeToWCDMA, disconnectNetwork } from './actions';
-import { ZTEMC801RouterExecutor, ZTESetAction } from './mc801-model';
+import {
+  connectNetwork,
+  disconnectNetwork,
+  set5GNonStandaloneNetwork,
+  set5GStandaloneNetwork,
+  setAllNetworks,
+  setOnlyLTENetwork,
+  setOnlyWCDMANetwork,
+} from './actions';
+
+import { ZTEMC801RouterExecutor } from './mc801-model';
 
 export class ZteApi {
   readonly #executor: ZTEMC801RouterExecutor;
@@ -8,23 +17,54 @@ export class ZteApi {
     this.#executor = executor;
   }
 
-  async disconnectNetwork() {
-    const action: ZTESetAction = disconnectNetwork();
-    await this.#executor.execute(action);
+  /*
+   * MC801 Connect actions
+   *
+   * */
+
+  async connectNetwork() {
+    await this.#executor.execute(connectNetwork());
 
     return this;
   }
 
-  async changeWCDMA() {
-    const action = changeToWCDMA();
-    await this.#executor.execute(action);
+  async disconnectNetwork(): Promise<ZteApi> {
+    await this.#executor.execute(disconnectNetwork());
 
     return this;
   }
 
-  async changeLTE() {
-    const action: ZTESetAction = changeToLTE();
-    await this.#executor.execute(action);
+  /*
+   * MC801 Bearer Network actions
+   *
+   * */
+
+  async setOnlyWCDMANetwork(): Promise<ZteApi> {
+    await this.#executor.execute(setOnlyWCDMANetwork());
+
+    return this;
+  }
+
+  async setOnlyLTENetwork(): Promise<ZteApi> {
+    await this.#executor.execute(setOnlyLTENetwork());
+
+    return this;
+  }
+
+  async set5GStandaloneNetwork(): Promise<ZteApi> {
+    await this.#executor.execute(set5GStandaloneNetwork());
+
+    return this;
+  }
+
+  async set5GNonStandaloneNetwork(): Promise<ZteApi> {
+    await this.#executor.execute(set5GNonStandaloneNetwork());
+
+    return this;
+  }
+
+  async setAllNetworks(): Promise<ZteApi> {
+    await this.#executor.execute(setAllNetworks());
 
     return this;
   }
