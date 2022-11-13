@@ -1,9 +1,10 @@
+import { ExecutorLogger } from '@ztejs/core';
 import * as axios from 'axios';
 import { AxiosInstance, AxiosResponse } from 'axios';
 import * as AxiosLogger from 'axios-logger';
 import { getLD, getRD, getVersion, login } from './actions';
 import { encodeAD, encodeLoginHash } from './encode';
-import { MC801ActionsLogger } from './logger';
+
 import { ZTEMC801Action, ZTEMC801RouterExecutor } from './mc801-model';
 import { asStringParameters } from './utils';
 
@@ -18,18 +19,22 @@ const assertActionType = (action: ZTEMC801Action) => {
 export const createActionExecutor = (
   host: string,
   isTest = true,
-  logger?: MC801ActionsLogger
+  logger?: ExecutorLogger<AxiosResponse>
 ): ZTEMC801RouterExecutor => new ZTEMC801Executor(host, isTest, logger);
 
 class ZTEMC801Executor implements ZTEMC801RouterExecutor {
   readonly #instance: AxiosInstance;
   readonly #isTest: boolean = true;
-  readonly #logger: MC801ActionsLogger | undefined;
+  readonly #logger: ExecutorLogger<AxiosResponse> | undefined;
 
   #cookie = '';
   #version = '';
 
-  constructor(host: string, isTest: boolean, logger?: MC801ActionsLogger) {
+  constructor(
+    host: string,
+    isTest: boolean,
+    logger?: ExecutorLogger<AxiosResponse>
+  ) {
     const baseURL = `http://${host}`;
     this.#isTest = isTest;
     this.#logger = logger;
